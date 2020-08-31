@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iotmqttdm-job
+  namespace: aks-workshop-dev
+spec:  
+  template:    
+    spec:      
+      containers:
+        - name: iotmqttdm-pod
+          image: akswkshpacr.azurecr.io/iotmqttdm:v1.0.1
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: aks-workshop-secret
+      restartPolicy: Never
